@@ -58,7 +58,7 @@ fi
 
 # Set permissions so users can delete them in their own environment
 echo "Setting permissions on ZMK resources..."
-chmod -R 777 .west zmk zephyr modules zmk-pmw3610-driver prospector-zmk-module
+chmod -R 777 .west zmk zephyr modules zmk-driver-pmw3360 prospector-zmk-module
 
 # # Debug: confirm checkout
 # echo "    West workspace ready. Project structure:"
@@ -161,8 +161,8 @@ build_firmware() {
   fi
 
   # Pass the boards/ module so ZMK can discover the custom shields,
-  # and the pmw3610 driver module.
-  local zmk_load_arg="-DZMK_EXTRA_MODULES=$SANDBOX_ROOT/boards;$SANDBOX_ROOT/zmk-pmw3610-driver;$SANDBOX_ROOT/prospector-zmk-module"
+  # and the pmw3360 driver module.
+  local zmk_load_arg="-DZMK_EXTRA_MODULES=$SANDBOX_ROOT/boards;$SANDBOX_ROOT/zmk-driver-pmw3360;$SANDBOX_ROOT/prospector-zmk-module"
   local extra_conf_arg=()
   local extra_dtc_overlay_arg=()
 

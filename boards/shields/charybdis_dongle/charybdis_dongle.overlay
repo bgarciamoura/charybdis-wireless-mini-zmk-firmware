@@ -49,7 +49,7 @@
     };
 
     /* The dongle is the central - it receives trackball data over BLE from the
-       right peripheral via zmk,input-split. No SPI or PMW3610 hardware here. */
+       right peripheral via zmk,input-split. No SPI or trackball hardware here. */
     split_inputs {
         #address-cells = <1>;
         #size-cells = <0>;
