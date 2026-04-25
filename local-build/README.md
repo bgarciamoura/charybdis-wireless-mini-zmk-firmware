@@ -63,7 +63,7 @@ bash ./local-build/build_setup.sh
   - To turn it on, set `ENABLE_USB_LOGGING="true"` at the top of [build_setup.sh](build_setup.sh), then follow instructions [here](https://zmk.dev/docs/development/usb-logging) to see the log stream on your computer.
   - Since this is a split keyboard you'll likely have to use `sudo tio /dev/ttyACM1` or `sudo tio /dev/ttyACM2` depending on what side you want to see logs for.
     - If you don't know what tty devices your system can see, run `ls -l /dev/serial/by-id` to find out.
-    - To enable PMW3610 sensor debug logging, also uncomment `CONFIG_PMW3610_ALT_LOG_LEVEL_DBG=y` in the relevant shield conf:
+    - To enable PMW3360 sensor debug logging, also uncomment `CONFIG_INPUT_LOG_LEVEL_DBG=y` in the relevant shield conf (the driver registers `LOG_MODULE_REGISTER(pmw3360, CONFIG_INPUT_LOG_LEVEL)`, so the input-subsystem level controls it):
       - BT mode: `boards/shields/charybdis_right_bt/charybdis_right_bt.conf`
       - Dongle mode: `boards/shields/charybdis_dongle/charybdis_dongle.conf`
 - If the firmware is not generated as expected, use the interactive shell method above to inspect `/workspaces/zmk/firmwares` or rerun the script with debugging.

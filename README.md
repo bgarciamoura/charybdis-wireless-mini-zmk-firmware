@@ -68,8 +68,8 @@ To see all the layers check out the [full render](keymap-drawer/all_layers/all_l
   - Hold: Layer 1 (numbers) while the key is held
   - Double-Tap & Hold: Keeps Backspace held
 - **Bluetooth profile quick-swap:** Jump to the EXTRAS layer and tap the dedicated BT-select keys to pair or switch among up to four saved hosts (plus BT CLR to forget all).
-- **PMW3610 low power trackball sensor driver:** Provided by [badjeff](https://github.com/badjeff/zmk-pmw3610-driver)
-  - Patched to prevent cursor jump on wake
+- **PMW3360 trackball sensor driver:** Provided by [mfulz](https://github.com/mfulz/zmk-driver-pmw3360)
+  - Burst-accumulation reduces BLE traffic from the right peripheral; runtime behaviors expose CPI cycling and force-awake
 - **Hold-tap side-aware triggers:** Each HRM key only becomes a modifier if the opposite half is active, preventing accidental holds while one-handed.
 - **Quick-tap / prior-idle:** Tuned for faster mod-vs-tap detection (160 / 120 ms), with tap-preferred variants on A, I, and O (positions 13, 21, and 22) for faster rolls in Colemak-DH.
 - **ZMK Studio:** Supported on Bluetooth and the standard no-screen dongle builds for quick keymap adjustments. Prospector screen builds disable it to preserve RAM.
@@ -174,7 +174,8 @@ To build the firmware follow either of the build processes below:
 
 ## Credits
 
-- [badjeff](https://github.com/badjeff) for the PMW3610 ZMK driver used as the basis for the trackball sensor integration
+- [mfulz](https://github.com/mfulz) for the [PMW3360 ZMK driver](https://github.com/mfulz/zmk-driver-pmw3360) used for the trackball sensor integration
+- [badjeff](https://github.com/badjeff) for the [PMW3610 ZMK driver](https://github.com/badjeff/zmk-pmw3610-driver) which served as the original trackball reference before the PMW3360 port
 - [carrefinho](https://github.com/carrefinho) for the original [Prospector](https://github.com/carrefinho/prospector) hardware and the [Prospector ZMK module](https://github.com/carrefinho/prospector-zmk-module/tree/feat/new-status-screens) this repo adapts for Charybdis dongles
 - [eigatech](https://github.com/eigatech) for prior Charybdis dongle work and useful reference patterns around split trackball/input-listener integration
 - [nickcoutsos](https://github.com/nickcoutsos/keymap-editor) for the browser-based keymap editor workflow
