@@ -86,4 +86,38 @@
         status = "disabled"; /* enabled on central by parent overlay */
         device = <&trackball_split>;
     };
+
+    /* Runtime tuning behaviors. Declaring the nodes here is enough to make
+       behavior_pmw3360_cpi_cycle.c and behavior_pmw3360_burst_accumulation_cycle.c
+       compile their bodies (each is wrapped in
+       #if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)), which in turn provides the
+       symbols pmw3360_runtime_persistence.c links against. The keymap can bind
+       &pmw_cpi_next / &pmw_burst_next later without any further wiring. */
+    behaviors {
+        pmw_cpi_next: pmw_cpi_next {
+            compatible = "zmk,behavior-pmw3360-cpi-cycle";
+            #binding-cells = <0>;
+            next;
+            default-cpi = <800>;
+        };
+
+        pmw_cpi_prev: pmw_cpi_prev {
+            compatible = "zmk,behavior-pmw3360-cpi-cycle";
+            #binding-cells = <0>;
+            default-cpi = <800>;
+        };
+
+        pmw_burst_next: pmw_burst_next {
+            compatible = "zmk,behavior-pmw3360-burst-accumulation-cycle";
+            #binding-cells = <0>;
+            next;
+            default-max-samples = <12>;
+        };
+
+        pmw_burst_prev: pmw_burst_prev {
+            compatible = "zmk,behavior-pmw3360-burst-accumulation-cycle";
+            #binding-cells = <0>;
+            default-max-samples = <12>;
+        };
+    };
 };
