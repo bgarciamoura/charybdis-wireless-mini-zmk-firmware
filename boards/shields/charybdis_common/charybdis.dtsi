@@ -7,9 +7,12 @@
         zmk,physical-layout = &charybdis_physical_layout;
     };
 
-    /* battery monitor*/
+    /* battery monitor — disabled until the Supermini UICR is programmed for
+       VDDH mode (REGOUT0). Otherwise this driver hardfaults the peripherals
+       at boot. See config/charybdis/charybdis.conf for the full rationale. */
     vbatt: vbatt {
 	compatible = "zmk,battery-nrf-vddh";
+	status = "disabled";
     };
 
     default_transform: keymap_transform_0 {
