@@ -1,0 +1,21 @@
+/*
+ * Diagnostic overlay: redirect zephyr,console to a CDC ACM endpoint on
+ * the nRF52840 USB device controller. Pair with diag/usb_log.conf which
+ * enables the USB device stack and the UART console backend.
+ *
+ * &zephyr_udc0 is the standard label for the nRF USB device controller
+ * on every nice_nano-style board target (also the same label used by
+ * ZMK's studio-rpc-usb-uart snippet).
+ */
+
+&zephyr_udc0 {
+    diag_cdc_acm: diag_cdc_acm {
+        compatible = "zephyr,cdc-acm-uart";
+    };
+};
+
+/ {
+    chosen {
+        zephyr,console = &diag_cdc_acm;
+    };
+};

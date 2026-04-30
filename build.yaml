@@ -28,6 +28,31 @@ include:
     keymap:
       - qwerty
 
+# ── Diagnostic Firmware (LED bootloop investigation) ──────────────────────────
+# Two-pronged bisect for the rapid-red-LED bootloop on both halves:
+#   • right peripheral has PMW3360 stripped (driver + DT nodes disabled) to
+#     test whether trackball init causes the crash;
+#   • left peripheral routes zephyr,console to USB CDC ACM, so plugging it
+#     into a host PC over USB-C captures Zephyr panic messages before reset.
+# Dongle is unchanged. Flash with settings_reset first on all three devices.
+# Remove this group once the cause is identified.
+  - name: diag
+    board: nice_nano//zmk
+    keymap:
+      - qwerty
+    builds:
+      - shield: charybdis_left_dongle
+        extra_conf_files:
+          - diag/usb_log.conf
+        extra_dtc_overlay_files:
+          - diag/usb_log.overlay
+      - shield: charybdis_right_dongle
+        extra_conf_files:
+          - diag/no_trackball.conf
+        extra_dtc_overlay_files:
+          - diag/no_trackball.overlay
+      - shield: charybdis_dongle
+
 # ── Bluetooth (BT) Firmwares ─ disabled (this hardware uses the dongle, not BT split) ─
 #  - name: bt
 #    board: nice_nano//zmk

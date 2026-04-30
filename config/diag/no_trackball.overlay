@@ -1,0 +1,10 @@
+/*
+ * Diagnostic overlay: disable every PMW3360-related DT node on the right
+ * peripheral so the input subsystem doesn't try to bind a driver that
+ * was excluded via diag/no_trackball.conf (CONFIG_INPUT_PIXART_PMW3360=n).
+ */
+
+&trackball         { status = "disabled"; };
+&trackball_split   { status = "disabled"; };
+&trackball_listener { status = "disabled"; };
+&spi0              { status = "disabled"; };
